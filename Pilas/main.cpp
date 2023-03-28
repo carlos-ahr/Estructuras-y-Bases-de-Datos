@@ -29,6 +29,9 @@ public:
     void mostrarPila(void);
     void mostrarImparesPila(void);
     void mostrarParesPila(void);
+    void mostrarMultiplos(int);
+    int contarMultiplos(int);
+    float calcularPromedio(void);
     ~Pila();
 };
 
@@ -91,15 +94,13 @@ void Pila::mostrarImparesPila(void) {
     Nodo* aux = tope;
     int cont = 0;
     while (aux) {
+        cont++;
         if (cont % 2 != 0) {
             cout << aux << "\t" << aux->obtenerValor() << endl;
             aux = aux->obtenerSiguiente();
-            cont++;
-
         }
         else {
             aux = aux->obtenerSiguiente();
-            cont++;
         }
     }
 }
@@ -108,17 +109,54 @@ void Pila::mostrarParesPila(void) {
     Nodo* aux = tope;
     int cont = 0;
     while (aux) {
+        cont++;
         if (cont % 2 == 0) {
             cout << aux << "\t" << aux->obtenerValor() << endl;
             aux = aux->obtenerSiguiente();
-            cont++;
-
         }
         else {
             aux = aux->obtenerSiguiente();
-            cont++;
         }
     }
+}
+
+void Pila::mostrarMultiplos(int val) {
+    Nodo* aux = tope;
+    while (aux) {
+        if (aux->obtenerValor() % val == 0) {
+            cout << aux << "\t" << aux->obtenerValor() << endl;
+            aux = aux->obtenerSiguiente();
+        }
+        else {
+            aux = aux->obtenerSiguiente();
+        }
+    }
+}
+
+int Pila::contarMultiplos(int val) {
+    Nodo* aux = tope;
+    int cont = 0;
+    while (aux) {
+        if (aux->obtenerValor() % val == 0) {
+            cont++,
+                aux = aux->obtenerSiguiente();
+        }
+        else {
+            aux = aux->obtenerSiguiente();
+        }
+    }
+    return cont;
+}
+
+float Pila::calcularPromedio(void) {
+    Nodo* aux = tope;
+    int totalNodos = this->tamano();
+    float acumulador = 0;
+    while (aux) {
+        acumulador += aux->obtenerValor();
+        aux = aux->obtenerSiguiente();
+    }
+    return acumulador / totalNodos;
 }
 
 Pila ::~Pila() {
@@ -130,7 +168,6 @@ Pila ::~Pila() {
 }
 
 int menu(void) {
-    system("cls");
     int op;
     cout << "-->\tPROGRAMA DE PILAS\t<--" << endl;
     cout << endl;
@@ -140,6 +177,9 @@ int menu(void) {
     cout << "4) Mostrar pila" << endl;
     cout << "5) Mostrar nodos impares de la pila" << endl;
     cout << "6) Mostrar nodos pares de la pila" << endl;
+    cout << "7) Mostrar multiplos de un valor" << endl;
+    cout << "8) Contar multiplos de un valor" << endl;
+    cout << "9) Calcular promedio" << endl;
     cout << "0) Salir" << endl;
     cout << endl;
     cout << "Seleccione una opcion: ";
@@ -170,20 +210,20 @@ int main(void) {
                     obj.push(val);
                 }
                 cout << endl;
-                system("pause");
+                cin.get();
                 op = menu();
                 break;
             case 2:
                 cout << "Se borro el ultimo nodo con el valor: " << obj.pop() << endl;
                 cout << endl;
-                system("pause");
+                cin.get();
                 op = menu();
                 break;
             case 3:
                 cout << "La pila tiene un tamano de [" << obj.tamano()
                     << "] nodos" << endl;
                 cout << endl;
-                system("pause");
+                cin.get();
                 op = menu();
                 break;
             case 4:
@@ -193,7 +233,7 @@ int main(void) {
                 cout << "---------\t-----" << endl;
                 obj.mostrarPila();
                 cout << endl;
-                system("pause");
+                cin.get();
                 op = menu();
                 break;
             case 5:
@@ -203,7 +243,7 @@ int main(void) {
                 cout << "---------\t-----" << endl;
                 obj.mostrarImparesPila();
                 cout << endl;
-                system("pause");
+                cin.get();
                 op = menu();
                 break;
             case 6:
@@ -213,19 +253,47 @@ int main(void) {
                 cout << "---------\t-----" << endl;
                 obj.mostrarParesPila();
                 cout << endl;
-                system("pause");
+                cin.get();
+                op = menu();
+                break;
+            case 7:
+                int val1;
+                cout << "Ingrese el numero del que desea mostrar sus multiplos: ",
+                    cin >> val1;
+                cout << "Direccion\tValor" << endl;
+                cout << "---------\t-----" << endl;
+                obj.mostrarMultiplos(val1);
+                cout << endl;
+                cin.get();
+                op = menu();
+                break;
+            case 8:
+                int val2;
+                cout << "Ingrese el numero del que desea contar sus multiplos: ",
+                    cin >> val2;
+                cout << "Direccion\tValor" << endl;
+                cout << "---------\t-----" << endl;
+                obj.contarMultiplos(val2);
+                cout << endl;
+                cin.get();
+                op = menu();
+                break;
+                case 9:
+                cout << "Valor promedio de los datos de la pila:" << obj.calcularPromedio() << endl;
+                cout << endl;
+                cin.get();
                 op = menu();
                 break;
             default:
                 cout << "Opcion invalida";
-                system("pause");
+                cin.get();
                 cout << endl;
                 op = menu();
                 break;
             }
         } while (op);
-        system("pause");
-        system("cls");
+        cin.get();
+        system("clear");
         cout << "Desea ejecutar de nuevo el codigo? (s/n): ";
         cin >> res;
         res = tolower(res);
