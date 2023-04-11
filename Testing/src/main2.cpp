@@ -1,11 +1,11 @@
 /*
-    1)  Llenar una pila de tamaño n.
-    2)  Vaciarla para llenar otras dos pilas mitad y mitad.
-    3)  Evaluar:
-        a)  Si n es par la primera mitad en P2 y la segunda en P3 
-        b)  Si n no es par:
-            -   P2 tendra un tamaño de N/2+1
-            -   P3 tendra un tamaño de N/2
+    1)  Llenar 2 pilas de tamaño n.
+    2)  Vaciar ambas pilas y crear una tercera.
+    3)  Al vaciar cada pila ir sumando los valores para crear la tercera pila del mismo tamaño.
+
+    P1 = 1, 2, 3, 4
+    P2 = 4, 5, 8, 1
+    P3 = P1 + P2
 */
 
 #include "../include/pila.h"
@@ -18,38 +18,25 @@ int main(void) {
     char res;
     do{
         system("clear");
-        int n;
-        cout << "Ingrese el numero de nodos que tendra la pila: ";
-        cin >> n;
+        int i, n=10;
         Pila p1, p2, p3;
-        for(int i=0; i<n; i++){
-            int v;
-            cout << "Ingrese el valor [" << i+1 << "]: ";
-            cin >> v;
-            p1.push(v);
+        for(int i=1; i<=n;i++){
+            p1.push(i);
+            p2.push(i+10);
         }
-        cout << "\nPila 1:\n\n";
-        p1.mostrarPila();
-        if (n%2 == 0) {
-            for (int i=0; i<n/2 ; i++) {
-                p2.push(p1.pop());
-            }
-            for (int i=0; i<n/2 ; i++) {
-                p3.push(p1.pop());
-            }
+        
+        cout << "El contenido de las pilas es:\n";
+        cout << "\nPila 1\n";
+        p1.mostrarPila(); 
+        cout << "\nPila 2\n";
+        p2.mostrarPila(); 
+        
+        for(int i=1; i<=n;i++){
+            p3.push(p1.pop()+p2.pop());
         }
-        else if(n%2 != 0) {
-            for (int i=0; i<n/2+1 ; i++) {
-                p2.push(p1.pop());
-            }
-            for (int i=0; i<n/2 ; i++) {
-                p3.push(p1.pop());
-            }
-        }
-        cout << "\nPila 2:\n\n";
-        p2.mostrarPila();
-        cout << "\nPila 3:\n\n";
-        p3.mostrarPila();
+        cout << "\nPila 3\n";
+        p3.mostrarPila(); 
+        
         cout << "\n\nDesea ejecutar nuevamente el programa (s/n)? ";
         cin >> res;
         res = tolower(res);
