@@ -4,35 +4,50 @@
 
 using namespace std;
 
-int menu(void) {
+int menu(void)
+{
     system("clear");
-    int op;
-    cout << "-->\tPROGRAMA DE PILAS\t<--" << endl;
-    cout << endl;
-    cout << "1) Agregar nodos" << endl;
-    cout << "2) Borrar ultimo nodo" << endl;
-    cout << "3) Mostrar tamano" << endl;
-    cout << "4) Mostrar pila" << endl;
-    cout << "5) Mostrar nodos impares de la pila" << endl;
-    cout << "6) Mostrar nodos pares de la pila" << endl;
-    cout << "7) Mostrar multiplos de un valor" << endl;
-    cout << "8) Contar multiplos de un valor" << endl;
-    cout << "9) Calcular promedio" << endl;
-    cout << "0) Salir" << endl;
-    cout << endl;
+    int res;
+    cout << "-->\tPROGRAMA DE PILAS\t<--"
+         << "\n";
+    cout << "\n";
+    cout << "1) Agregar nodos"
+         << "\n";
+    cout << "2) Borrar ultimo nodo"
+         << "\n";
+    cout << "3) Mostrar tamano"
+         << "\n";
+    cout << "4) Mostrar pila"
+         << "\n";
+    cout << "5) Mostrar nodos impares de la pila"
+         << "\n";
+    cout << "6) Mostrar nodos pares de la pila"
+         << "\n";
+    cout << "7) Mostrar multiplos de un valor"
+         << "\n";
+    cout << "8) Contar multiplos de un valor"
+         << "\n";
+    cout << "9) Calcular promedio"
+         << "\n";
+    cout << "0) Salir"
+         << "\n";
+    cout << "\n";
     cout << "Seleccione una opcion: ";
-    cin >> op;
-    cout << endl;
-    return op;
+    cin >> res;
+    return res;
 }
 
-int main(void) {
+int main(void)
+{
     Pila obj;
     char res;
-    do {
+    do
+    {
         int op = menu();
-        do {
-            switch (op) {
+        do
+        {
+            switch (op)
+            {
             case 0:
                 obj.~Pila();
                 break;
@@ -40,92 +55,105 @@ int main(void) {
                 int num;
                 cout << "Ingrese el numero de nodos: ";
                 cin >> num;
-                cout << endl;
-                for (int i = 0; i < num; i++) {
+                cout << "\n";
+                for (int i = 0; i < num; i++)
+                {
                     int val;
                     cout << "Ingrese el valor del nodo[" << i + 1 << "]: ";
                     cin >> val;
                     obj.push(val);
                 }
-                cout << endl;
+                cin.get();
+                cin.get();
                 op = menu();
+                cout << "\n";
                 break;
             case 2:
-                cout << "Se borro el ultimo nodo con el valor: " << obj.pop() << endl;
-                cout << endl;
+                cout << "Se borro el ultimo nodo con el valor: " << obj.pop() << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 3:
                 cout << "La pila tiene un tamano de [" << obj.tam()
-                    << "] nodos" << endl;
-                cout << endl;
+                     << "] nodos"
+                     << "\n";
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 4:
-                cout << "Contenido de la pila:" << endl;
-                cout << endl;
-                cout << "Direccion\tValor" << endl;
-                cout << "---------\t-----" << endl;
+                cout << "Contenido de la pila:"
+                     << "\n";
+                cout << "\n";
                 obj.mostrarPila();
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 5:
-                cout << "Contenido de los impares de la pila:" << endl;
-                cout << endl;
-                cout << "Direccion\tValor" << endl;
-                cout << "---------\t-----" << endl;
+                cout << "Contenido de los impares de la pila:"
+                     << "\n";
+                cout << "\n";
                 obj.mostrarImparesPila();
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 6:
-                cout << "Contenido de los pares de la pila:" << endl;
-                cout << endl;
-                cout << "Direccion\tValor" << endl;
-                cout << "---------\t-----" << endl;
+                cout << "Contenido de los pares de la pila:"
+                     << "\n";
+                cout << "\n";
                 obj.mostrarParesPila();
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 7:
                 int val1;
                 cout << "Ingrese el numero del que desea mostrar sus multiplos: ",
                     cin >> val1;
-                cout << "Direccion\tValor" << endl;
-                cout << "---------\t-----" << endl;
                 obj.mostrarMultiplos(val1);
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             case 8:
                 int val2;
                 cout << "Ingrese el numero del que desea contar sus multiplos: ",
                     cin >> val2;
-                cout << "Direccion\tValor" << endl;
-                cout << "---------\t-----" << endl;
                 obj.contMultiplos(val2);
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
-                case 9:
-                cout << "Valor promedio de los datos de la pila:" << obj.calcPromedio() << endl;
-                cout << endl;
+            case 9:
+                cout << "Valor promedio de los datos de la pila:" << obj.calcPromedio() << "\n";
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             default:
                 cout << "Opcion invalida";
-                cout << endl;
+                cout << "\n";
+                cin.get();
+                cin.get();
                 op = menu();
                 break;
             }
-        } while (op);
-        cin.get();
+        } while (op == 's');
         system("clear");
         cout << "Desea ejecutar de nuevo el codigo? (s/n): ";
         cin >> res;
         res = tolower(res);
     } while (res == 's');
-    cout << endl;
+    cout << "\n";
     return 0;
 }
