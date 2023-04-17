@@ -168,6 +168,7 @@ Pila ::~Pila() {
 }
 
 int menu(void) {
+    system("clear");
     int op;
     cout << "-->\tPROGRAMA DE PILAS\t<--" << endl;
     cout << endl;
@@ -279,7 +280,7 @@ int main(void) {
                 op = menu();
                 break;
                 case 9:
-                cout << "Valor promedio de los datos de la pila:" << obj.calcularPromedio() << endl;
+                cout << "Valor promedio de los datos de la pila: " << obj.calcularPromedio() << endl;
                 cout << endl;
                 cin.get();
                 op = menu();
