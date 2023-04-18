@@ -18,8 +18,8 @@ public:
     void mostrarMultiplos(int);
     int contMultiplos(int);
     float calcPromedio(void);
-    void llenarMultiplo(int, Pila *, Pila *);
-    void juntarPilasIguales(Pila *, Pila *);
-    void juntarPilasDiferentes(Pila *, Pila *);
+    void llenarMultiplo(int, Pila &, Pila &);
+    void juntarPilasIguales(Pila &, Pila &);
+    void juntarPilasDiferentes(Pila &, Pila &);
     ~Pila();
 };
