@@ -181,9 +181,9 @@ void Pila::juntarPilasDiferentes(Pila *pilaAux1, Pila *pilaAux2)
         {
             push(pilaAux1->pop());
         }
-        else if (aux1)
+        else if (aux2)
         {
-            push(pilaAux1->pop());
+            push(pilaAux2->pop());
         }
     }
 }
