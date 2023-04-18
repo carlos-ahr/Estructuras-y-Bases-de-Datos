@@ -1,0 +1,24 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"upgradePackages": true,
+			"packages": "curl,nano"
+		},
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+			"clean_ppas": true,
+			"preserve_apt_list": true,
+			"force_ppas_on_non_ubuntu": true,
+			"packages": "htop",
+			"ppas": "ppa:deadsnakes/ppa"
+		},
+		"ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+			"clean_ppas": true,
+			"preserve_apt_list": true,
+			"force_ppas_on_non_ubuntu": true,
+			"packages": "curl,ca-certificates",
+			"ppas": "ppa:deadsnakes/ppa"
+		},
+		"ghcr.io/akhildevelops/devcontainer-features/apt:0": {}
+	}
+}
