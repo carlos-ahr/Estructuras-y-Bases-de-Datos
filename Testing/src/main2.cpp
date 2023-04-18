@@ -14,32 +14,36 @@
 
 using namespace std;
 
-int main(void) {
+int main(void)
+{
     char res;
-    do{
+    do
+    {
         system("clear");
-        int i, n=10;
+        int i, n = 10;
         Pila p1, p2, p3;
-        for(int i=1; i<=n;i++){
+        for (int i = 1; i <= n; i++)
+        {
             p1.push(i);
-            p2.push(i+10);
+            p2.push(i + 10);
         }
-        
+
         cout << "El contenido de las pilas es:\n";
         cout << "\nPila 1\n";
-        p1.mostrarPila(); 
+        p1.mostrarPila();
         cout << "\nPila 2\n";
-        p2.mostrarPila(); 
-        
-        for(int i=1; i<=n;i++){
-            p3.push(p1.pop()+p2.pop());
+        p2.mostrarPila();
+
+        for (int i = 1; i <= n; i++)
+        {
+            p3.push(p1.pop() + p2.pop());
         }
         cout << "\nPila 3\n";
-        p3.mostrarPila(); 
-        
+        p3.mostrarPila();
+
         cout << "\n\nDesea ejecutar nuevamente el programa (s/n)? ";
         cin >> res;
         res = tolower(res);
-    } while(res=='s');
+    } while (res == 's');
     return 0;
 }

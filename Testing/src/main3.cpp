@@ -14,35 +14,44 @@
 
 using namespace std;
 
-int main(void) {
+int main(void)
+{
     char res;
-    do{
+    do
+    {
         system("clear");
         int n;
         cout << "Ingrese el numero de nodos que tendra la pila: ";
         cin >> n;
         Pila p1, p2, p3;
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++)
+        {
             int v;
-            cout << "Ingrese el valor [" << i+1 << "]: ";
+            cout << "Ingrese el valor [" << i + 1 << "]: ";
             cin >> v;
             p1.push(v);
         }
         cout << "\nPila 1:\n\n";
         p1.mostrarPila();
-        if (n%2 == 0) {
-            for (int i=0; i<n/2 ; i++) {
+        if (n % 2 == 0)
+        {
+            for (int i = 0; i < n / 2; i++)
+            {
                 p2.push(p1.pop());
             }
-            for (int i=0; i<n/2 ; i++) {
+            for (int i = 0; i < n / 2; i++)
+            {
                 p3.push(p1.pop());
             }
         }
-        else if(n%2 != 0) {
-            for (int i=0; i<n/2+1 ; i++) {
+        else if (n % 2 != 0)
+        {
+            for (int i = 0; i < n / 2 + 1; i++)
+            {
                 p2.push(p1.pop());
             }
-            for (int i=0; i<n/2 ; i++) {
+            for (int i = 0; i < n / 2; i++)
+            {
                 p3.push(p1.pop());
             }
         }
@@ -53,6 +62,6 @@ int main(void) {
         cout << "\n\nDesea ejecutar nuevamente el programa (s/n)? ";
         cin >> res;
         res = tolower(res);
-    } while(res=='s');
+    } while (res == 's');
     return 0;
 }

@@ -4,117 +4,176 @@
 
 using namespace std;
 
-Pila::Pila(void){tope = NULL;}
-bool Pila::pilaVacia(void){return tope == NULL;}
-void Pila::push(int v){tope = new Nodo(v, tope);}
-int Pila::pop(void){
-    Nodo* aux;
+Pila::Pila(void) { tope = NULL; }
+bool Pila::pilaVacia(void) { return tope == NULL; }
+void Pila::push(int v) { tope = new Nodo(v, tope); }
+int Pila::pop(void)
+{
+    Nodo *aux;
     int v;
-    if(!pilaVacia()){
+    if (!pilaVacia())
+    {
         aux = tope;
-        v = aux -> obtenerValor();
-        tope = aux -> obtenerSiguiente();
+        v = aux->obtenerValor();
+        tope = aux->obtenerSiguiente();
         delete aux;
     }
-    else{
+    else
+    {
         cout << "Pila vacia\n";
         exit(-1);
     }
     return v;
 }
-int Pila::tam(void){
+int Pila::tam(void)
+{
     int cont = 0;
-    Nodo* aux = tope;
-    while(aux){
-        aux = aux -> obtenerSiguiente();
+    Nodo *aux = tope;
+    while (aux)
+    {
+        aux = aux->obtenerSiguiente();
         cont++;
     }
     return cont;
 }
-void Pila::mostrarPila(void){
-    Nodo* aux = tope;
+void Pila::mostrarPila(void)
+{
+    Nodo *aux = tope;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
-    while(aux){
-            cout << aux << "\t" << aux -> obtenerValor() << "\n";
-            aux = aux -> obtenerSiguiente();
+    while (aux)
+    {
+        cout << aux << "\t" << aux->obtenerValor() << "\n";
+        aux = aux->obtenerSiguiente();
     }
 }
-void Pila::mostrarParesPila(void){
-    Nodo* aux = tope;
+void Pila::mostrarParesPila(void)
+{
+    Nodo *aux = tope;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
-    while(aux){
+    while (aux)
+    {
         cont++;
-        if(cont % 2 == 0){
-            cout << aux << "\t" << aux -> obtenerValor() << "\n";
-            aux = aux -> obtenerSiguiente();
+        if (cont % 2 == 0)
+        {
+            cout << aux << "\t" << aux->obtenerValor() << "\n";
+            aux = aux->obtenerSiguiente();
         }
-        else{
-            aux = aux -> obtenerSiguiente();
+        else
+        {
+            aux = aux->obtenerSiguiente();
         }
     }
 }
-void Pila::mostrarImparesPila(void){
-    Nodo* aux = tope;
+void Pila::mostrarImparesPila(void)
+{
+    Nodo *aux = tope;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
-    while(aux){
+    while (aux)
+    {
         cont++;
-        if(cont % 2 != 0){
-        cout << aux << "\t" << aux -> obtenerValor() << "\n";
-            aux = aux -> obtenerSiguiente();
+        if (cont % 2 != 0)
+        {
+            cout << aux << "\t" << aux->obtenerValor() << "\n";
+            aux = aux->obtenerSiguiente();
         }
-        else{
-            aux = aux -> obtenerSiguiente();
+        else
+        {
+            aux = aux->obtenerSiguiente();
         }
     }
 }
-void Pila::mostrarMultiplos(int m){
-        Nodo* aux = tope;
+void Pila::mostrarMultiplos(int m)
+{
+    Nodo *aux = tope;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
-    while(aux){
+    while (aux)
+    {
         cont++;
-        if(cont % m == 0){
-            cout << aux << "\t" << aux -> obtenerValor() << "\n";
-            aux = aux -> obtenerSiguiente();
+        if (cont % m == 0)
+        {
+            cout << aux << "\t" << aux->obtenerValor() << "\n";
+            aux = aux->obtenerSiguiente();
         }
-        else{
-            aux = aux -> obtenerSiguiente();
+        else
+        {
+            aux = aux->obtenerSiguiente();
         }
     }
 }
-int Pila::contMultiplos(int m){
-    Nodo* aux = tope;
+int Pila::contMultiplos(int m)
+{
+    Nodo *aux = tope;
     int cont = 0;
-    while(aux){
-        if(cont % m == 0){
+    while (aux)
+    {
+        if (cont % m == 0)
+        {
             cont++;
-            aux = aux -> obtenerSiguiente();
+            aux = aux->obtenerSiguiente();
         }
-        else{
-            aux = aux -> obtenerSiguiente();
+        else
+        {
+            aux = aux->obtenerSiguiente();
         }
     }
     return cont;
 }
-float Pila::calcPromedio(void){
-    Nodo* aux = tope;
+float Pila::calcPromedio(void)
+{
+    Nodo *aux = tope;
     int totalNodos = this->tam();
     float acumulador = 0.0;
-    while(aux){
-        acumulador += aux -> obtenerValor();
-        aux = aux -> obtenerSiguiente();
+    while (aux)
+    {
+        acumulador += aux->obtenerValor();
+        aux = aux->obtenerSiguiente();
     }
     return acumulador / totalNodos;
 }
 
-Pila::~Pila(){
-    while (!pilaVacia()) {
+void Pila::llenarMultiplo(int x, Pila *pilaAux1, Pila *pilaAux2)
+{
+    Nodo *aux = tope;
+    while (aux)
+    {
+        if (aux->obtenerValor() % x == 0)
+        {
+            pilaAux1->push(pop());
+        }
+        else
+        {
+            pilaAux2->push(pop());
+        }
+        aux = aux->obtenerSiguiente();
+    }
+}
+
+void Pila::juntarPilasIguales(Pila *pilaAux1, Pila *pilaAux2)
+{
+    int _tam = tam();
+    for (int i = 0; i <_tam; i++)
+    {
+        push(pilaAux1->pop());
+        push(pilaAux2->pop());
+    }
+}
+
+void Pila::juntarPilasDiferentes(Pila *pila1, Pila *pila2)
+{
+    
+}
+
+Pila::~Pila()
+{
+    while (!pilaVacia())
+    {
         cout << "Eliminando elemento con valor: " << pop() << "\n";
-    }   
+    }
 }

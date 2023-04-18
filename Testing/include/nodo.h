@@ -1,13 +1,15 @@
 #pragma once
 
-class Nodo {
+class Nodo
+{
     int dato;
-    Nodo* siguiente;
+    Nodo *siguiente;
+
 public:
-    Nodo (int v, Nodo* s);
+    Nodo(int v, Nodo *s);
     int obtenerValor(void);
-    Nodo* obtenerSiguiente(void);
+    Nodo *obtenerSiguiente(void);
     void cambiarValor(int);
-    void cambiarSiguiente(Nodo*);
+    void cambiarSiguiente(Nodo *);
     ~Nodo();
 };
