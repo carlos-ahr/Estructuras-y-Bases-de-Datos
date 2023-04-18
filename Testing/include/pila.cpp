@@ -158,16 +158,34 @@ void Pila::llenarMultiplo(int x, Pila *pilaAux1, Pila *pilaAux2)
 void Pila::juntarPilasIguales(Pila *pilaAux1, Pila *pilaAux2)
 {
     int _tam = tam();
-    for (int i = 0; i <_tam; i++)
+    for (int i = 0; i < _tam; i++)
     {
         push(pilaAux1->pop());
         push(pilaAux2->pop());
     }
 }
 
-void Pila::juntarPilasDiferentes(Pila *pila1, Pila *pila2)
+void Pila::juntarPilasDiferentes(Pila *pilaAux1, Pila *pilaAux2)
 {
-    
+    Nodo *aux1 = pilaAux1->tope;
+    Nodo *aux2 = pilaAux2->tope;
+
+    while (aux1 || aux2)
+    {
+        if (aux1 && aux2)
+        {
+            push(pilaAux1->pop());
+            push(pilaAux2->pop());
+        }
+        else if (aux1)
+        {
+            push(pilaAux1->pop());
+        }
+        else if (aux1)
+        {
+            push(pilaAux1->pop());
+        }
+    }
 }
 
 Pila::~Pila()
