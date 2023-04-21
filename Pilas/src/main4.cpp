@@ -10,7 +10,7 @@ int main(void)
     {
         system("clear");
         Pila pila1;
-        Pila *pila2, *pila3;
+        Pila pila2, pila3;
         int tam = 10, mul;
         for (int i = 1; i <= tam; i++)
         {
@@ -22,9 +22,9 @@ int main(void)
         pila1.mostrarPila();
         pila1.llenarMultiplo(mul, pila2, pila3);
         cout << "\nLa pila que contiene los multiplos es:" << endl;
-        pila2->mostrarPila();
+        pila2.mostrarPila();
         cout << "\nLa pila que contiene los no multiplos es:" << endl;
-        pila3->mostrarPila();
+        pila3.mostrarPila();
         cout << "\n\nDesea ejecutar nuevamente el programa (s/n)? ";
         cin >> res;
         res = tolower(res);

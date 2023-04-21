@@ -14,7 +14,7 @@ public:
     void insertar(int d);
     int elimina(void);
     void mostrarCola(void);
-    void decrementa(void);
+    void decrementar(void);
     int tam(void);
     void mostrarParesCola(void);
     void mostrarImparesCola(void);

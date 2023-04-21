@@ -50,7 +50,7 @@ void Cola::mostrarCola(void)
     }
 }
 
-void Cola::decrementa(void)
+void Cola::decrementar(void)
 {
     Nodo *aux = Inicio;
     while (aux)
