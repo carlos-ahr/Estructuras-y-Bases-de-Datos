@@ -1,5 +1,6 @@
 #include "nodo.h"
 
+
 Nodo::Nodo(int v, Nodo *s)
 {
     dato = v;

@@ -1,5 +1,5 @@
+#include <stdlib.h>
 #pragma once
-
 class Nodo
 {
 private:

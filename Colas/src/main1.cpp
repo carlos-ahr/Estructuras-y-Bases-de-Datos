@@ -9,13 +9,13 @@ int main(void)
 {
     char res;
     int op;
+    Cola obj;
     do
     {
         system("clear");
         do
         {
             system("clear");
-            Cola obj;
             cout << "-->\tPROGRAMA DE COLAS\t<--"
                  << "\n";
             cout << "\n";
@@ -45,8 +45,6 @@ int main(void)
             {
                 case 0:
                 {
-                    obj.~Cola();
-                    cin.get();
                     break;
                 }
                 case 1:
@@ -119,7 +117,7 @@ int main(void)
                     int m;
                     cout << "Ingrese el multiplo: ";
                     cin >> m;
-                    obj.contMultiplos(m);
+                    cout << obj.contMultiplos(m);
                     cin.get();
                     break;
                 }
@@ -137,3 +135,5 @@ int main(void)
 
     return 0;
 }
+
+

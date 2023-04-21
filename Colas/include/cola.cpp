@@ -16,7 +16,7 @@ void Cola::insertar(int d)
     }
     else
     {
-        Fin = Inicio = new Nodo(d);
+        Inicio = Fin = new Nodo(d);
     }
 }
 int Cola::elimina()
@@ -25,7 +25,7 @@ int Cola::elimina()
     int d;
     if (!laColaEstaVacia())
     {
-        Inicio = Inicio->obtenerSiguiente();
+        Fin = Fin->obtenerSiguiente();
         d = aux->obtenerValor();
         delete aux;
     }
@@ -40,7 +40,7 @@ int Cola::elimina()
 
 void Cola::mostrarCola(void)
 {
-    Nodo *aux = Fin;
+    Nodo *aux = Inicio;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
     while (aux)
@@ -74,7 +74,7 @@ int Cola::tam(void)
 
 void Cola::mostrarParesCola(void)
 {
-    Nodo *aux = Fin;
+    Nodo *aux = Inicio;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
@@ -95,7 +95,7 @@ void Cola::mostrarParesCola(void)
 
 void Cola::mostrarImparesCola(void)
 {
-    Nodo *aux = Fin;
+    Nodo *aux = Inicio;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
@@ -116,7 +116,7 @@ void Cola::mostrarImparesCola(void)
 
 void Cola::mostrarMultiplos(int m)
 {
-    Nodo *aux = Fin;
+    Nodo *aux = Inicio;
     int cont = 0;
     cout << "Siguiente\tValor\n";
     cout << "---------\t-----\n";
@@ -137,7 +137,7 @@ void Cola::mostrarMultiplos(int m)
 
 int Cola::contMultiplos(int m)
 {
-    Nodo *aux = Fin;
+    Nodo *aux = Inicio;
     int cont = 0;
     while (aux)
     {
