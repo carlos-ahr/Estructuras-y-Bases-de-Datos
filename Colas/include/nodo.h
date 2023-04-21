@@ -1,12 +1,15 @@
 #pragma once
 
+#include <stdlib.h>
+
 class Nodo
 {
+private:
     int dato;
     Nodo *siguiente;
 
 public:
-    Nodo(int v, Nodo *s);
+    Nodo(int v = 0, Nodo *s = NULL);
     int obtenerValor(void);
     Nodo *obtenerSiguiente(void);
     void cambiarValor(int);
