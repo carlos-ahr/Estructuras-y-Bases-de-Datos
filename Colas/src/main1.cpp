@@ -15,7 +15,7 @@ int main(void)
         do
         {
             system("clear");
-            cout << "-->\tPROGRAMA DE PILAS\t<--" << "\n";
+            cout << "-->\tPROGRAMA DE COLAS\t<--" << "\n";
             cout << "\n";
             cout << "1) Agregar" << "\n";
             cout << "2) Borrar"<< "\n";
