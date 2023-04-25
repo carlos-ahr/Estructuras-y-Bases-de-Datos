@@ -1,139 +1,108 @@
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 #include "../include/cola.h"
 
 using namespace std;
 
-int main(void)
-{
+int main(void) {
+    Cola obj;
     char res;
     int op;
-    Cola obj;
-    do
-    {
+    do {
         system("clear");
-        do
-        {
+        do {
             system("clear");
-            cout << "-->\tPROGRAMA DE COLAS\t<--"
-                 << "\n";
-            cout << "\n";
-            cout << "1) Agregar"
-                 << "\n";
-            cout << "2) Borrar"
-                 << "\n";
-            cout << "3) Mostrar"
-                 << "\n";
-            cout << "4) Decrementar"
-                 << "\n";
-            cout << "5) Tamano"
-                 << "\n";
-            cout << "6) Mostrar indices pares"
-                 << "\n";
-            cout << "7) Mostrar indices impares"
-                 << "\n";
-            cout << "8) Mostrar indices multiplos de X"
-                 << "\n";
-            cout << "9) Contar indices multiplos de X"
-                 << "\n";
-            cout << "0) Salir"
-                 << "\n\n";
-            cout << "Seleccione una opcion: ";
+            cout << "-->\tMENU DE COLAS\t<--\n";
+            cout << "1) Agregar elementos\n";
+            cout << "2) Eliminar elemento\n";
+            cout << "3) Decrementar valores de la cola\n";
+            cout << "4) Mostrar cola\n";
+            cout << "5) Tamano de la cola\n";
+            cout << "6) Mostrar valores pares\n";
+            cout << "7) Mostrar valores impares\n";
+            cout << "8) Mostrar valores multiplos\n";
+            cout << "9) Contar valores multiplos\n";
+            cout << "0) Salir del menu \n";
+            cout << "\n\nElige una opcion: ";
             cin >> op;
-            switch (op)
-            {
+            switch (op) {
                 case 0:
-                {
                     break;
-                }
-                case 1:
-                {
+                case 1: {
                     int num;
                     cout << "\nIngrese el numero de nodos: ";
                     cin >> num;
-                    cout << "\n";
                     for (int i = 0; i < num; i++)
                     {
                         int val;
-                        cout << "Ingrese el valor del nodo[" << i + 1 << "]: ";
+                        cout << "Ingrese el valor del nodo [" << i + 1 << "]: ";
                         cin >> val;
-                        obj.insertar(val);
+                        obj.agregar(val);
                     }
                     cin.get();
                     break;
                 }
-                case 2:
-                {
-                    cout << "Se borro el ultimo nodo con el valor de: " << obj.elimina() << "\n";
+                case 2: {
+                    cout << "\nSe elimino el nodo con el valor [" << obj.eliminar() << "]\n";
                     cin.get();
                     break;
                 }
-                case 3:
-                {
+                case 3: {
+                    obj.decrementarValores();
+                    cout << "\nSe decrementaron los valores de la cola\n\n";
+                    obj.mostrarCola();
+                    cin.get();
+                    break;
+                }
+                case 4: {
                     cout << "Contenido de la cola:\n\n";
                     obj.mostrarCola();
                     cin.get();
                     break;
                 }
-                case 4:
-                {
-                    obj.decrementar();
-                    cout << "Se decrementaron los valores de la cola\n\n";
+                case 5: {
+                    cout << "\nLa cola tiene un tamano de " << obj.tam() << " nodos.";
                     cin.get();
                     break;
                 }
-                case 5:
-                {
-                    cout << "La pila tiene un tamano de " << obj.tam() << "\n";
+                case 6: {
+                    cout << "\nContenidos pares de la cola:\n\n";
+                    obj.mostrarPares();
                     cin.get();
                     break;
                 }
-                case 6:
-                {
-                    cout << "Los valores de los indices pares de la cola son:\n\n";
-                    obj.mostrarParesCola();
+                case 7: {
+                    cout << "\nContenidos impares de la cola:\n\n";
+                    obj.mostrarImpares();
                     cin.get();
                     break;
                 }
-                case 7:
-                {
-                    cout << "Los valores de los indices impares de la cola son:\n\n";
-                    obj.mostrarImparesCola();
-                    cin.get();
-                    break;
-                }
-                case 8:
-                {
-                    int m;
+                case 8: {
+                    int mul;
                     cout << "Ingrese el multiplo: ";
-                    cin >> m;
-                    obj.mostrarMultiplos(m);
+                    cin >> mul;
+                    cout << "\nContenidos multiplos de " << mul << " de la cola:\n\n";
+                    obj.mostrarMultiplos(mul);
                     cin.get();
                     break;
                 }
-                case 9:
-                {
-                    int m;
+                case 9: {
+                    int mul;
                     cout << "Ingrese el multiplo: ";
-                    cin >> m;
-                    cout << obj.contMultiplos(m);
+                    cin >> mul;
+                    cout << "\nLa cola contiene " << obj.contarMultiplos(mul) << " multiplos de " << mul << ".\n";
                     cin.get();
                     break;
                 }
                 default:
-                {
-                    cout << "\nOpcion invalida\n";
-                }
+                    cout << "\nOpcion invalida, seleccione otra\n";
             }
             cin.get();
-        } while (op); // del menu
-        cout << "\n\n¿Deseas ejecutar nuevamente el programa? s/n " << endl;
+        } while (op);
+        cout << "\n\n¿Deseas ejecutar nuevamente el programa?(s/n): ";
         cin >> res;
         res = tolower(res);
     } while (res == 's');
-
     return 0;
 }
-
-

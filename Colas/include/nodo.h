@@ -1,7 +1,8 @@
-#include <stdlib.h>
 #pragma once
-class Nodo
-{
+
+#include <iostream>
+
+class Nodo {
 private:
     int dato;
     Nodo *siguiente;

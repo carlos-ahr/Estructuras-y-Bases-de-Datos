@@ -1,8 +1,8 @@
-#include "nodo.h"
+#include "./nodo.h"
 
+using namespace std;
 
-Nodo::Nodo(int v, Nodo *s)
-{
+Nodo::Nodo(int v, Nodo *s) {
     dato = v;
     siguiente = s;
 }

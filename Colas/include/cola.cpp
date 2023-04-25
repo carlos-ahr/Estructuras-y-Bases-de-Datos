@@ -1,36 +1,28 @@
+#include "./cola.h"
+
+#include <cstdlib>
 #include <iostream>
-#include "cola.h"
 
 using namespace std;
 
-Cola::Cola()
-{
-    Fin = Inicio = NULL;
-}
-void Cola::insertar(int d)
-{
-    if (!laColaEstaVacia())
-    {
+Cola::Cola() { Fin = Inicio = NULL; }
+void Cola::agregar(int d) {
+    if (!colaVacia()) {
         Fin->cambiarSiguiente(new Nodo(d));
         Fin = Fin->obtenerSiguiente();
-    }
-    else
-    {
-        Inicio = Fin = new Nodo(d);
+    } else {
+        Fin = Inicio = new Nodo(d);
     }
 }
-int Cola::elimina()
-{
+
+int Cola::eliminar() {
     Nodo *aux = Inicio;
     int d;
-    if (!laColaEstaVacia())
-    {
-        Fin = Fin->obtenerSiguiente();
+    if (!colaVacia()) {
+        Inicio = Inicio->obtenerSiguiente();
         d = aux->obtenerValor();
         delete aux;
-    }
-    else
-    {
+    } else {
         cout << "La cola esta vacia";
         Fin = NULL;
         exit(1);
@@ -38,132 +30,104 @@ int Cola::elimina()
     return d;
 }
 
-void Cola::mostrarCola(void)
-{
+bool Cola::colaVacia(void) { return Inicio == NULL; }
+
+void Cola::decrementarValores(void) {
     Nodo *aux = Inicio;
-    cout << "Siguiente\tValor\n";
-    cout << "---------\t-----\n";
-    while (aux)
-    {
-        cout << aux << "\t" << aux->obtenerValor() << "\n";
+    while (aux) {
+        aux->cambiarValor(aux->obtenerValor() - 1);
         aux = aux->obtenerSiguiente();
     }
 }
 
-void Cola::decrementar(void)
-{
+void Cola::mostrarCola(void) {
     Nodo *aux = Inicio;
-    while (aux)
-    {
-        aux->cambiarValor(aux->obtenerValor()-1);
+    int cont = 0;
+    cout << "No.\tValor\n";
+    cout << "---\t-----\n";
+    while (aux) {
+        cont++;
+        cout << cont << "\t" << aux->obtenerValor() << "\n";
         aux = aux->obtenerSiguiente();
     }
 }
 
-int Cola::tam(void)
-{
+int Cola::tam(void) {
     Nodo *aux = Inicio;
-    int cont = 1;
-    while (aux)
-    {
+    int cont = 0;
+    while (aux) {
         cont++;
         aux = aux->obtenerSiguiente();
     }
     return cont;
 }
 
-void Cola::mostrarParesCola(void)
-{
+void Cola::mostrarPares(void) {
     Nodo *aux = Inicio;
     int cont = 0;
-    cout << "Siguiente\tValor\n";
-    cout << "---------\t-----\n";
-    while (aux)
-    {
+    cout << "No.\tValor\n";
+    cout << "---\t-----\n";
+    while (aux) {
         cont++;
-        if (cont % 2 == 0)
-        {
-            cout << aux << "\t" << aux->obtenerValor() << "\n";
+        if (cont % 2 == 0) {
+            cout << cont << "\t" << aux->obtenerValor() << "\n";
             aux = aux->obtenerSiguiente();
-        }
-        else
-        {
+        } else {
             aux = aux->obtenerSiguiente();
         }
     }
 }
 
-void Cola::mostrarImparesCola(void)
-{
+void Cola::mostrarImpares(void) {
     Nodo *aux = Inicio;
     int cont = 0;
-    cout << "Siguiente\tValor\n";
-    cout << "---------\t-----\n";
-    while (aux)
-    {
+    cout << "No.\tValor\n";
+    cout << "---\t-----\n";
+    while (aux) {
         cont++;
-        if (cont % 2 != 0)
-        {
-            cout << aux << "\t" << aux->obtenerValor() << "\n";
+        if (cont % 2 != 0) {
+            cout << cont << "\t" << aux->obtenerValor() << "\n";
             aux = aux->obtenerSiguiente();
-        }
-        else
-        {
+        } else {
             aux = aux->obtenerSiguiente();
         }
     }
 }
 
-void Cola::mostrarMultiplos(int m)
-{
+void Cola::mostrarMultiplos(int m) {
     Nodo *aux = Inicio;
     int cont = 0;
-    cout << "Siguiente\tValor\n";
-    cout << "---------\t-----\n";
-    while (aux)
-    {
+    cout << "No.\tValor\n";
+    cout << "---\t-----\n";
+    while (aux) {
         cont++;
-        if (cont % m == 0)
-        {
-            cout << aux << "\t" << aux->obtenerValor() << "\n";
+        if (cont % m == 0) {
+            cout << cont << "\t" << aux->obtenerValor() << "\n";
             aux = aux->obtenerSiguiente();
-        }
-        else
-        {
+        } else {
             aux = aux->obtenerSiguiente();
         }
     }
 }
 
-int Cola::contMultiplos(int m)
-{
+int Cola::contarMultiplos(int m) {
     Nodo *aux = Inicio;
-    int cont = 0;
-    while (aux)
-    {
-        if (cont % m == 0)
-        {
-            cont++;
+    int cont = 0, ac = 0;
+    while (aux) {
+        cont++;
+        if (cont % m == 0) {
+            ac++;
             aux = aux->obtenerSiguiente();
-        }
-        else
-        {
+        } else {
             aux = aux->obtenerSiguiente();
         }
     }
-    return cont;
+    return ac;
 }
 
-bool Cola::laColaEstaVacia(void)
-{
-    return Inicio == NULL;
-}
-
-Cola::~Cola()
-{
-    while (!laColaEstaVacia())
-        cout << elimina() << endl;
+Cola::~Cola() {
+    cout << endl;
+    while (!colaVacia()) cout << "Eliminando el nodo con valor [" << eliminar() << "]\n";
+    cout << "\nSaliendo...\n\n";
     cin.get();
 }
-
-

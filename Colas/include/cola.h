@@ -2,8 +2,7 @@
 
 #include "./nodo.h"
 
-class Cola
-{
+class Cola {
 private:
     Nodo *Inicio;
     Nodo *Fin;
@@ -11,14 +10,14 @@ private:
 public:
     Cola();
     ~Cola();
-    void insertar(int d);
-    int elimina(void);
+    void agregar(int d);
+    int eliminar(void);
+    bool colaVacia(void);
+    void decrementarValores(void);
     void mostrarCola(void);
-    void decrementar(void);
     int tam(void);
-    void mostrarParesCola(void);
-    void mostrarImparesCola(void);
+    void mostrarPares(void);
+    void mostrarImpares(void);
     void mostrarMultiplos(int m);
-    int contMultiplos(int m);
-    bool laColaEstaVacia(void);
+    int contarMultiplos(int m);
 };
