@@ -21,5 +21,6 @@ public:
     void llenarMultiplo(int, Pila &, Pila &);
     void juntarPilasIguales(Pila &, Pila &);
     void juntarPilasDiferentes(Pila &, Pila &);
+    int contValoresNegativos(void);
     ~Pila();
 };

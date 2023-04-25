@@ -188,6 +188,24 @@ void Pila::juntarPilasDiferentes(Pila &pilaAux1, Pila &pilaAux2)
     }
 }
 
+int Pila::contValoresNegativos(void) {
+    Nodo *aux = tope;
+    int cont = 0;
+    while (aux)
+    {
+        if (aux->obtenerValor() < 0)
+        {
+            cont++;
+            aux = aux->obtenerSiguiente();
+        }
+        else
+        {
+            aux = aux->obtenerSiguiente();
+        }
+    }
+    return cont;
+}
+
 Pila::~Pila()
 {
     while (!pilaVacia())
