@@ -13,7 +13,7 @@ int main(void) {
         system("clear");
         do {
             system("clear");
-            cout << "-->\tMENU DE Pilas\t<--\n";
+            cout << "-->\tMENU DE PILAS\t<--\n";
             cout << "1) Agregar elementos\n";
             cout << "2) Eliminar elemento\n";
             cout << "3) Mostrar cola\n";

@@ -1,0 +1,21 @@
+/*
+Grupo: 3CM6
+Nombre: Carlos Alberto Herrera Rangel
+Descripcion:
+- Hacer modificaciones a la clase Lista para que el orden sea decendente (mayor a menor)
+*/
+
+// Solo se modifica el metodo "insertar" de la clase Lista:
+
+void Lista ::insertar(int val) {
+    Nodo *aux;
+    if (listaVacia() || aux->obtenerValor() < val) {
+        Inicio = new Nodo(val, Inicio);
+    } else {
+        aux = Inicio;
+        while (aux->obtenerSiguiente() && aux->obtenerSiguiente()->obtenerValor() >= val) {
+            aux = aux->obtenerSiguiente();
+        }
+        aux->cambiarSiguiente(new Nodo(val, aux->obtenerSiguiente()));
+    }
+}

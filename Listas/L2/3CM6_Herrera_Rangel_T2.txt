@@ -1,0 +1,124 @@
+/*
+Grupo: 3CM6
+Nombre: Carlos Alberto Herrera Rangel
+Descripcion:
+- Hacer modificaciones a la clases Lista y Nodo para que el el tipo de dato sea caracter (char)
+*/
+
+//Clase Nodo:
+    //Declaracion (nodo.h)
+        #pragma once
+
+        #include <iostream>
+
+        class Nodo {
+        private:
+            char val;
+            Nodo *siguiente;
+
+        public:
+            Nodo(char v = 0, Nodo *s = NULL);
+            int obtenerValor(void);
+            Nodo *obtenerSiguiente(void);
+            void cambiarValor(char);
+            void cambiarSiguiente(Nodo *);
+        };
+    //Definicion (nodo.cpp)
+        #include "./nodo.h"
+
+        using namespace std;
+
+        Nodo::Nodo(char v, Nodo *s) {
+            val = v;
+            siguiente = s;
+        }
+        int Nodo::obtenerValor(void) { return val; }
+        Nodo *Nodo::obtenerSiguiente(void) { return siguiente; }
+        void Nodo::cambiarValor(char v) { val = v; }
+        void Nodo::cambiarSiguiente(Nodo *s) { siguiente = s; }
+
+//Clase Lista
+    //Declaracion (lista.h)
+        #pragma once
+
+        #include "nodo.h"
+
+        class Lista {
+        private:
+            Nodo *Inicio;
+
+        public:
+            Lista();
+            ~Lista();
+            void insertar(char);
+            char eliminar(char);
+            bool listaVacia(void);
+            void mostrarLista(void);
+        };
+    //Definicion (lista.cpp)
+        #include "lista.h"
+
+        using namespace std;
+
+        Lista ::Lista() { Inicio = NULL; }
+
+        void Lista ::insertar(char val) {
+            Nodo *aux;
+            if (listaVacia() || aux->obtenerValor() > val) {
+                Inicio = new Nodo(val, Inicio);
+            } else {
+                aux = Inicio;
+                while (aux->obtenerSiguiente() && aux->obtenerSiguiente()->obtenerValor() <= val) {
+                    aux = aux->obtenerSiguiente();
+                }
+                aux->cambiarSiguiente(new Nodo(val, aux->obtenerSiguiente()));
+            }
+        }
+
+        char Lista ::eliminar(char val) {
+            int valEliminado = 0;
+            Nodo *anterior, *aux;
+            if (!listaVacia()) {
+                aux = Inicio;
+                anterior = NULL;
+                while (!aux || aux->obtenerValor() < val) {
+                    anterior = aux;
+                    aux = aux->obtenerSiguiente();
+                }
+                if(!aux || aux->obtenerValor() != val) {
+                    return -1;
+                }
+                else {
+                    if(!anterior) {
+                        Inicio = aux->obtenerSiguiente();
+                    }
+                    else {
+                        anterior->cambiarSiguiente(aux->obtenerSiguiente());
+                    }
+                    valEliminado = aux->obtenerValor();
+                    delete aux;
+                }
+            }
+            else {
+                cout << "[x] La lista esta vacia\n";
+                cin.get();
+                exit(-1);
+            }
+            return valEliminado;
+        }
+
+        bool Lista ::listaVacia(void) { return Inicio == NULL; }
+
+        void Lista ::mostrarLista(void) {
+            Nodo *aux = Inicio;
+            cout << "Siguiente\tValor\n";
+            cout << "---------\t-----\n";
+            while(aux) {
+                cout << aux->obtenerSiguiente() << "\t" << aux->obtenerValor() << "\n";
+                aux = aux->obtenerSiguiente();
+            }
+        }
+
+        Lista ::~Lista() { cout << "[!] Eliminando lista...\n"; }
+
+// Ya que los caracteres en c++ son enteros de 0-255 segun el codigo ascii podemos dejar las condiciones igual.
