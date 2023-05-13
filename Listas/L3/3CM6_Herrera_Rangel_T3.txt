@@ -1,0 +1,50 @@
+/*
+Grupo: 3CM6
+Nombre: Carlos Alberto Herrera Rangel
+Descripcion:
+- Utilizar la funcion "existeVal" para optimizar la funcion "eliminar"
+*/
+
+//Metodo "existeVal":
+bool Lista ::existeVal(int val) {
+    Nodo *aux = Inicio;
+    while(aux) {
+        if(aux->obtenerValor() == val) {
+            return true;
+        }
+    }
+    return false;
+}
+
+//metodo "eliminar" modificado:
+int Lista ::eliminar(int val) {
+    int valEliminado = 0;
+    Nodo *anterior, *aux;
+    if (!listaVacia()) {
+        aux = Inicio;
+        anterior = NULL;
+        while (aux && aux->obtenerValor() < val) {
+            anterior = aux;
+            aux = aux->obtenerSiguiente();
+        }
+        if(existeVal(val)) {
+            return -1;
+        }
+        else {
+            if(!anterior) {
+                Inicio = aux->obtenerSiguiente();
+            }
+            else {
+                anterior->cambiarSiguiente(aux->obtenerSiguiente());
+            }
+            valEliminado = aux->obtenerValor();
+            delete aux;
+        }
+    }
+    else {
+        cout << "[x] La lista esta vacia\n";
+        cin.get();
+        exit(-1);
+    }
+    return valEliminado;
+}

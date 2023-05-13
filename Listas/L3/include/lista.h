@@ -13,4 +13,5 @@ public:
     int eliminar(int);
     bool listaVacia(void);
     void mostrarLista(void);
+    bool existeVal(int);
 };

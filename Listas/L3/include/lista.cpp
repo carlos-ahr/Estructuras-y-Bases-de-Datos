@@ -23,11 +23,11 @@ int Lista ::eliminar(int val) {
     if (!listaVacia()) {
         aux = Inicio;
         anterior = NULL;
-        while (!aux || aux->obtenerValor() < val) {
+        while (aux && aux->obtenerValor() < val) {
             anterior = aux;
             aux = aux->obtenerSiguiente();
         }
-        if(!aux || aux->obtenerValor() != val) {
+        if(existeVal(val)) {
             return -1;
         }
         else {
@@ -59,6 +59,16 @@ void Lista ::mostrarLista(void) {
         cout << aux->obtenerSiguiente() << "\t" << aux->obtenerValor() << "\n";
         aux = aux->obtenerSiguiente();
     }
+}
+
+bool Lista ::existeVal(int val) {
+    Nodo *aux = Inicio;
+    while(aux) {
+        if(aux->obtenerValor() == val) {
+            return true;
+        }
+    }
+    return false;
 }
 
 Lista ::~Lista() { cout << "[!] Eliminando lista...\n"; }
