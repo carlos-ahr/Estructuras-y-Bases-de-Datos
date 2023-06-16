@@ -2,6 +2,11 @@
 
 using namespace std;
 
+ArbolBB::ArbolBB() {
+    raiz = NULL;
+    actual = NULL;
+}
+
 ArbolBB::~ArbolBB() { poda(raiz); }
 
 void ArbolBB::insertarNodo(long d) { insertarNodo(d, raiz); }
@@ -16,6 +21,10 @@ void ArbolBB::postOrden(void) {
 void ArbolBB::entreOrden(void) {
     actual = raiz;
     entreOrden(actual);
+}
+int ArbolBB::contarHojas(void) {
+    actual = raiz;
+    return contarHojas(actual);
 }
 void ArbolBB::insertarNodo(long d, Nodo *&raiz) {
     Nodo *aux = raiz;
@@ -59,5 +68,15 @@ void ArbolBB::entreOrden(Nodo *aux)  // infijo
         postOrden(aux->obtenerIzquierdo());
         cout << aux->obtenerDato() << endl;
         postOrden(aux->obtenerDerecho());
+    }
+}
+
+int ArbolBB::contarHojas(Nodo *& aux) {
+    if(aux == NULL) {
+        return 0;
+    } else if(aux -> obtenerIzquierdo() == NULL && aux -> obtenerDerecho() == NULL){
+        return 1;
+    } else{
+        return contarHojas(aux->obtenerIzquierdo()) + contarHojas(aux->obtenerDerecho());
     }
 }

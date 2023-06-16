@@ -10,6 +10,7 @@ class ArbolBB {
     void preOrden(void);
     void postOrden(void);
     void entreOrden(void);
+    int contarHojas(void);
 
    private:
     Nodo *raiz;
@@ -18,9 +19,6 @@ class ArbolBB {
     void preOrden(Nodo *);
     void postOrden(Nodo *);
     void entreOrden(Nodo *);
+    int contarHojas(Nodo *&);
     void insertarNodo(long d, Nodo *&);
 };
-ArbolBB::ArbolBB() {
-    raiz = NULL;
-    actual = NULL;
-}
