@@ -11,10 +11,6 @@ void listaDoble :: insertarNodo(int val) {
         delete(actual);
         actual = inicio;
     }
-}
-
-void listaDoble :: insertarNodo(int val) {
-    nodoD *actual;
     if (listaVacia() || val < inicio->obtenerValor()) {
         actual = new nodoD(val, inicio);
         if(fin == NULL)
@@ -199,6 +195,7 @@ int  listaDoble :: contarMultiplos(int m) {
         } else
             aux = aux->obtenerSiguiente();
     }
+    return cont;
 }
 
 void listaDoble :: guardarDatos(void) {}

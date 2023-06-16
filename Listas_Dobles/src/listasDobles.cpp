@@ -5,13 +5,13 @@ using namespace std;
 class NodoD {
    public:
     NodoD(int dato, NodoD* siguiente = NULL, NodoD* anterior = NULL);
-    int dameTuDato(void);
+    int obtenerDato(void);
     NodoD* dameTuSiguiente(void);
     NodoD* dameTuAnterior(void);
-    void modificaTuDato(int dato);
+    void modificarDato(int dato);
     void modificaTuSiguiente(NodoD* siguiente);
     void modificaTuAnterior(NodoD* anterior);
-    void muestraTusDatos(void);
+    void mostrarDatos(void);
 
    private:
     NodoD* anterior;
@@ -23,15 +23,15 @@ NodoD::NodoD(int dato, NodoD* siguiente, NodoD* anterior) {
     this->siguiente = siguiente;
     this->anterior = anterior;
 }
-int NodoD::dameTuDato(void) { return dato; }
+int NodoD::obtenerDato(void) { return dato; }
 NodoD* NodoD::dameTuSiguiente(void) { return siguiente; }
 NodoD* NodoD::dameTuAnterior(void) { return anterior; }
-void NodoD::modificaTuDato(int dato) { this->dato = dato; }
+void NodoD::modificarDato(int dato) { this->dato = dato; }
 void NodoD::modificaTuSiguiente(NodoD* siguiente) {
     this->siguiente = siguiente;
 }
 void NodoD::modificaTuAnterior(NodoD* anterior) { this->anterior = anterior; }
-void NodoD::muestraTusDatos(void) {
+void NodoD::mostrarDatos(void) {
     cout << dato << " : ";
     if (siguiente == NULL) {
         cout << "NULL";
@@ -43,11 +43,11 @@ class ListaDoble {
    public:
     ListaDoble();
     ~ListaDoble();
-    void insertaUnNodo(int dato);
+    void insertarNodo(int dato);
     bool vacia(void);
     void borraUnNodo(int dato);
-    void muestraTusDatosID(void);
-    void muestraTusDatosDI(void);
+    void mostrarDatosID(void);
+    void mostrarDatosDI(void);
     NodoD* dameTuSiguienteNodo(NodoD*);
     NodoD* dameTuAnteriorNodo(NodoD*);
     NodoD* dameTuInicio(void);
@@ -67,9 +67,9 @@ ListaDoble::~ListaDoble() {
         actual = inicio;
     }
 }
-void ListaDoble::insertaUnNodo(int dato) {
+void ListaDoble::insertarNodo(int dato) {
     NodoD* actual;
-    if (vacia() || dato < inicio->dameTuDato()) {
+    if (vacia() || dato < inicio->obtenerDato()) {
         actual = new NodoD(dato, inicio);
         if (fin == NULL)
             fin = actual;
@@ -79,7 +79,7 @@ void ListaDoble::insertaUnNodo(int dato) {
     } else {
         NodoD* anterior = NULL;
         actual = inicio;
-        while (actual && actual->dameTuDato() <= dato) {
+        while (actual && actual->obtenerDato() <= dato) {
             anterior = actual;
             actual = actual->dameTuSiguiente();
         }
@@ -97,19 +97,19 @@ bool ListaDoble::vacia(void) { return inicio == NULL; }
 void ListaDoble::borraUnNodo(int dato) {
     if (!vacia()) {
         NodoD* actual = inicio;
-        if (dato == inicio->dameTuDato()) {
+        if (dato == inicio->obtenerDato()) {
             inicio = inicio->dameTuSiguiente();
             inicio->modificaTuAnterior(NULL);
             delete (actual);
             if (!inicio) fin = inicio;
         } else {
             NodoD* anterior = NULL;
-            while (actual && actual->dameTuDato() < dato) {
+            while (actual && actual->obtenerDato() < dato) {
                 anterior = actual;
                 actual = actual->dameTuSiguiente();
             }
             if (actual) {
-                if (actual->dameTuDato() == dato) {
+                if (actual->obtenerDato() == dato) {
                     anterior->modificaTuSiguiente(actual->dameTuSiguiente());
                     if (actual->dameTuSiguiente())
                         actual->dameTuSiguiente()->modificaTuAnterior(anterior);
@@ -125,18 +125,18 @@ void ListaDoble::borraUnNodo(int dato) {
     } else
         cout << "Lista vacia" << endl;
 }
-void ListaDoble::muestraTusDatosDI(void) {
+void ListaDoble::mostrarDatosDI(void) {
     NodoD* actual = fin;
     while (actual) {
-        cout << actual->dameTuDato() << "->";
+        cout << actual->obtenerDato() << "->";
         actual = actual->dameTuAnterior();
     }
     cout << endl;
 }
-void ListaDoble::muestraTusDatosID(void) {
+void ListaDoble::mostrarDatosID(void) {
     NodoD* actual = inicio;
     while (actual) {
-        cout << actual->dameTuDato() << "->";
+        cout << actual->obtenerDato() << "->";
         actual = actual->dameTuSiguiente();
     }
     cout << endl;
@@ -160,7 +160,7 @@ NodoD* ListaDoble::dameTuInicio(void) { return inicio; }
 void ListaDoble::copiaPares(ListaDoble& L2) {
     NodoD* Aux = inicio;
     while (Aux) {
-        if (Aux->dameTuDato() % 2 == 0) L2.insertaUnNodo(Aux->dameTuDato());
+        if (Aux->obtenerDato() % 2 == 0) L2.insertarNodo(Aux->obtenerDato());
         Aux = Aux->dameTuSiguiente();
     }
 }
@@ -168,7 +168,7 @@ void ListaDoble::copiaPares(ListaDoble& L2) {
 void ListaDoble::copiaParesDI(ListaDoble& L2) {
     NodoD* Aux = fin;
     while (Aux) {
-        if (Aux->dameTuDato() % 2 == 0) L2.insertaUnNodo(Aux->dameTuDato());
+        if (Aux->obtenerDato() % 2 == 0) L2.insertarNodo(Aux->obtenerDato());
         Aux = Aux->dameTuAnterior();
     }
 }
@@ -180,25 +180,25 @@ void ListaDoble::guardaTusDatos(void) {}
 int main(void) {
     ListaDoble L1, L2;
 
-    L1.insertaUnNodo(31);
-    L1.insertaUnNodo(12);
-    L1.insertaUnNodo(54);
-    L1.insertaUnNodo(43);
-    L1.insertaUnNodo(20);
-    L1.insertaUnNodo(2);
-    L1.insertaUnNodo(5);
+    L1.insertarNodo(31);
+    L1.insertarNodo(12);
+    L1.insertarNodo(54);
+    L1.insertarNodo(43);
+    L1.insertarNodo(20);
+    L1.insertarNodo(2);
+    L1.insertarNodo(5);
 
     cout << "Lista 1" << endl;
-    L1.muestraTusDatosID();
-    L1.muestraTusDatosDI();
+    L1.mostrarDatosID();
+    L1.mostrarDatosDI();
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%  Prueba del ejercicio 1
     // %%%%%%%%%%%%%%%%%%%%%%
     cout << endl << "Lista 2" << endl;
     // L1.copiaPares(L2);
     L1.copiaParesDI(L2);
-    L2.muestraTusDatosID();
-    L2.muestraTusDatosDI();
+    L2.mostrarDatosID();
+    L2.mostrarDatosDI();
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%  Prueba del ejercicio 2
     // %%%%%%%%%%%%%%%%%%%%%%
